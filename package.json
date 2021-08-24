@@ -1,0 +1,26 @@
+{
+  "name": "peerjs-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newseoyun/peerjs-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newseoyun/peerjs-test/issues"
+  },
+  "homepage": "https://github.com/newseoyun/peerjs-test#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "socket.io": "^4.1.3",
+    "uuid": "^8.3.2"
+  }
+}
