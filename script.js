@@ -21,6 +21,7 @@ navigator.mediaDevices
     });
 
     socket.on('user-connected', (userId) => {
+      console.log("user-connected : " + userId);
       connectToNewUser(userId, stream);
     });
   });
@@ -36,8 +37,8 @@ myPeer.on('open', (id) => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement('video');
-  call.on('stream', (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
+  call.on('stream', (stream) => {
+    addVideoStream(video, stream);
   });
   call.on('close', () => {
     video.remove();
