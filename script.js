@@ -7,10 +7,11 @@ myVideoEl.muted = true
 const myPeer = new Peer()
 const peers = {}
 
+
 navigator.mediaDevices
     .getUserMedia({
         video: true,
-        audio: true,
+        audio: true
     })
     .then((myStream) => {
 
