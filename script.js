@@ -2,7 +2,9 @@ const socket = io('/')
 
 const videoGrid = document.getElementById('video-grid')
 const myVideoEl = document.createElement('video')
+myVideoEl.id = "v1"
 myVideoEl.muted = true
+myVideoEl.setAttribute("playsinline", true);
 
 const myPeer = new Peer()
 const peers = {}
@@ -10,8 +12,9 @@ const peers = {}
 
 navigator.mediaDevices
     .getUserMedia({
+        audio: true,
         video: true,
-        audio: true
+        facingMode: { exact: "environment" }
     })
     .then((myStream) => {
 
@@ -19,6 +22,7 @@ navigator.mediaDevices
 
         myPeer.on('call', (call) => {
             const userVideoEl = document.createElement('video')
+            userVideoEl.id = "v2"
             call.answer(myStream)
             call.on('stream', (userVideoStream) => {
                 addVideoStream(userVideoEl, userVideoStream)
@@ -27,7 +31,7 @@ navigator.mediaDevices
 
         socket.on('user-connected', (userId) => {
             console.log("user-connected : " + userId)
-            connectToNewUser(userId, stream)
+            connectToNewUser(userId, myStream)
         })
 
     })
@@ -36,7 +40,8 @@ socket.on('user-disconnected', (userId) => {
     if (peers[userId]) peers[userId].close()
 })
 
-myPeer.on('open', (id) => { // 
+myPeer.on('open', (id) => {
+    console.log('join id : ', id)
     socket.emit('join-room', ROOM_ID, id)
 })
 // open = Whether the media connection is active (e.g. your call has been answered).
