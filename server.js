@@ -21,7 +21,7 @@ const io = require('socket.io')(server)
 
 app.set('view engine', 'ejs')
 
-app.use(express.static(__dirname + "ㅁㄴㅇㄹ"))
+app.use(express.static(__dirname))
 
 app.get('/', (req, res) => {
     res.redirect(`${uuidV4()}`)
