@@ -21,7 +21,7 @@ const io = require('socket.io')(server)
 
 app.set('view engine', 'ejs')
 
-app.use(express.static(__dirname))
+app.use(express.static(__dirname + "ㅁㄴㅇㄹ"))
 
 app.get('/', (req, res) => {
     res.redirect(`${uuidV4()}`)
@@ -44,6 +44,8 @@ io.on('connection', (socket) => {
         })
     })
 })
+
 console.log("running...");
+
 const PORT = 3000
 server.listen(PORT)
