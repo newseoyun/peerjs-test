@@ -2,12 +2,13 @@
 ## 구동해보며 겪은 문제
 
 ### Uncaught SyntaxError: Unexpected token '<'
-1. 스태틱 리소스 경로 설정 문제. app.use(express.static(__dirname)) 여기 수정함.
+1. 스태틱 리소스 경로 설정 문제.    
+server.js:24 app.use(express.static(__dirname)) 여기 수정함.
 
 
 ### Uncaught (in promise) DOMException: Permission denied by system   
-1. HTTPS 여야 => certbot(Let's Encrypt)으로 무료 ssl인증서 발급 받았음.   
-2. 집 컴퓨터는 잘 됐는데 그램에서만 위 에러가 떴음.   
+1. HTTPS 여야 => certbot(Let's Encrypt)으로 무료 ssl인증서 발급 받아서 적용.  
+2. 그램에서만 위 에러가 떴음.   
 알고보니 (윈도우11기준) 설정의 [업데이트 및 보안]에서 마이크 액세스 꺼져있었음.
 
 
@@ -16,6 +17,7 @@
     getUserMedia() 사파리에서만, (해보니 크롬도 잘 됨.)   
     getUserMedia() 초기화 시 video 옵션 중 width, height에 디바이스가 지원하는 정확한 수치를 넣어야함.   
     `<video>` 태그에 playsinline 속성이 있어야함.
+* 현재 다른 피어들의 스트림 못가져오는 문제 수정 중
 
 
 

@@ -24,17 +24,21 @@ app.set('view engine', 'ejs')
 app.use(express.static(__dirname))
 
 app.get('/', (req, res) => {
-    res.redirect(`${uuidV4()}`)
+    //res.redirect(`${uuidV4()}`)
+    res.redirect('testroom')
 })
 
 app.get('/:room', (req, res) => {
-    res.render('room', { roomId: req.params.room })
+    //res.render('room', { roomId: req.params.room })
+    res.render('room', { roomId: 'testroom' })
 })
 
 io.on('connection', (socket) => {
     console.log("connected");
     socket.on('join-room', (roomId, userId) => {
         console.log("join-room. roomId " + roomId + " |  userId " + userId)
+        console.log("room: ", io.sockets.adapter.rooms)
+        
         socket.join(roomId);
         socket.broadcast.to(roomId).emit('user-connected', userId);
 
@@ -44,6 +48,8 @@ io.on('connection', (socket) => {
         })
     })
 })
+
+
 
 console.log("running...");
 
